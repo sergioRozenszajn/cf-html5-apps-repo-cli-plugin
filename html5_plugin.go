@@ -29,6 +29,7 @@ var Commands = []commands.Command{
 	&commands.PushCommand{},
 	&commands.DeleteCommand{},
 	&commands.InfoCommand{},
+	&commands.ApprouterPushCommand{},
 }
 
 // Run runs this plugin
