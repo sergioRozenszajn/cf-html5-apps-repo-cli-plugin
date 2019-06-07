@@ -55,6 +55,10 @@ type CFCredentials struct {
 	SapCloudService      *string `json:"sap.cloud.service,omitempty"`
 	SapCloudServiceAlias *string `json:"sap.cloud.service.alias,omitempty"`
 	UAA                  *CFUAA  `json:"uaa,omitempty"`
+	ClientID             *string `json:"clientid,omitempty"`
+	ClientSecret         *string `json:"clientsecret,omitempty"`
+	URL                  *string `json:"url,omitempty"`
+	IdentityZone         *string `json:"identityzone,omitempty"`
 }
 
 // CFUAA Cloud Foundry XSUAA credentials
@@ -62,4 +66,5 @@ type CFUAA struct {
 	ClientID     string `json:"clientid,omitempty"`
 	ClientSecret string `json:"clientsecret,omitempty"`
 	URL          string `json:"url,omitempty"`
+	IdentityZone string `json:"identityzone,omitempty"`
 }

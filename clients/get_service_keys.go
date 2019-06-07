@@ -5,7 +5,6 @@ import (
 	"cf-html5-apps-repo-cli-plugin/log"
 	"encoding/json"
 	"strings"
-
 	"github.com/cloudfoundry/cli/plugin"
 )
 
@@ -34,7 +33,8 @@ func GetServiceKeys(cliConnection plugin.CliConnection, serviceInstanceGUID stri
 		}
 
 		for _, serviceKey := range responseObject.Resources {
-			serviceKeys = append(serviceKeys, models.CFServiceKey{Name: *serviceKey.Entity.Name, GUID: serviceKey.Metadata.GUID, Credentials: *serviceKey.Entity.Credentials})
+			serviceKeys = append(serviceKeys, models.CFServiceKey{Name: *serviceKey.Entity.Name,
+				GUID: serviceKey.Metadata.GUID, Credentials: *serviceKey.Entity.Credentials})
 		}
 		nextURL = responseObject.NextURL
 	}
