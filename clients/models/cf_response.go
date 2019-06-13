@@ -53,12 +53,20 @@ type CFCredentials struct {
 	URI                  *string `json:"uri,omitempty"`
 	GrantType            *string `json:"grant_type,omitempty"`
 	SapCloudService      *string `json:"sap.cloud.service,omitempty"`
+	HTML5APPSREPO        *HTML5APPSREPO `json:"html5-apps-repo,omitempty"`
 	SapCloudServiceAlias *string `json:"sap.cloud.service.alias,omitempty"`
 	UAA                  *CFUAA  `json:"uaa,omitempty"`
 	ClientID             *string `json:"clientid,omitempty"`
 	ClientSecret         *string `json:"clientsecret,omitempty"`
 	URL                  *string `json:"url,omitempty"`
 	IdentityZone         *string `json:"identityzone,omitempty"`
+	IdentityZoneID       *string `json:"identityzoneid,omitempty"`
+	SBURL                *string `json:"sburl,omitempty"`
+	TenantID             *string `json:"tenantid,omitempty"`
+	TenantMode           *string `json:"tenantmode,omitempty"`
+	UAADomain            *string `json:"uaadomain,omitempty"`
+	VerificationKey      *string `json:"verificationkey,omitempty"`
+	XsappName            *string `json:"xsappname,omitempty"`
 }
 
 // CFUAA Cloud Foundry XSUAA credentials
@@ -67,4 +75,9 @@ type CFUAA struct {
 	ClientSecret string `json:"clientsecret,omitempty"`
 	URL          string `json:"url,omitempty"`
 	IdentityZone string `json:"identityzone,omitempty"`
+}
+
+// HTML5 Repo credentials
+type HTML5APPSREPO struct {
+	AphostID     string `json:"app_host_id,omitempty"`
 }
