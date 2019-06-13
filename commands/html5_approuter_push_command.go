@@ -56,11 +56,11 @@ func (c *ApprouterPushCommand) GetPluginCommand() plugin.Command {
 		Name:     "html5-approuter-push",
 		HelpText: "Push an approuter to html5-apps-repo service",
 		UsageDetails: plugin.Usage{
-			Usage: "cf html5-approuter-push [-run | -f PATH_TO_MANIFEST_FOLDER]",
+			Usage: "cf html5-approuter-push [-run | -r | -f PATH_TO_MANIFEST_FOLDER]",
 			Options: map[string]string{
 				"-file, -f":               "Use specific manifest.yaml file",
 				"PATH_TO_MANIFEST_FOLDER": "Path to manifest.yaml file",
-				"-run":                    "Run approuter",
+				"-run, -r":                "Run approuter",
 			},
 		},
 	}
@@ -105,7 +105,7 @@ func (c *ApprouterPushCommand) Execute(args []string) ExecutionStatus {
 			filePath = argsMap["--file"][0]
 		}
 
-		if argsMap["-run"] != nil {
+		if argsMap["-run"] != nil || argsMap["-r"] != nil {
 			run = true
 		}
 		// Check if passed argument is a file
@@ -256,10 +256,18 @@ func (c *ApprouterPushCommand) PushApprouter(filePath string, run bool) Executio
 
 		}
 		if run == true {
-			err = openbrowser(approuterurl)
-		}
-		if err != nil {
-			ui.Failed("Could not run approuter url: %+v", approuterurl)
+			if approuterDomain == "" {
+				ui.Failed("Cannot run approuter, approuter domain is missing")
+			}
+			if welcomeFile == "" {
+				ui.Failed("Cannot run approuter, welcome file is missing")
+			}
+			if welcomeFile != "" && approuterDomain != "" {
+				err = openbrowser(approuterurl)
+				if err != nil {
+					ui.Failed("Could not run approuter url: %+v", approuterurl)
+				}
+			}
 		}
 	}
 	return Success

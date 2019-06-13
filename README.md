@@ -19,6 +19,7 @@ It allows to:
   uploaded with the same service instance of `html5-apps-repo` service
 - push one or multiple applications using existing service instances
   of `app-host` plan, or create new ones for you on-the-fly
+- create, update and run service instances of `app-router` plan
 
 ## Prerequisites
 
@@ -212,12 +213,36 @@ OPTIONS:
    -APP_HOST_NAME     Name of html5-apps-repo app-host service instance
 ```
 
+#### html5-approuter-push
+
+<details><summary>History</summary>
+
+| Version  | Changes                                     |
+|----------|---------------------------------------------|
+| `v2.0.0` | Added in `v2.0.0`                           |
+
+</details>
+
+```
+NAME:
+   html5-approuter-push - Creates or update a service instance of plan app-router generating the necesary service keys and providing the configured environment variables from manifest.yaml file
+
+USAGE:
+   html5-approuter-push [-run | -r | -f PATH_TO_MANIFEST_FOLDER]
+
+OPTIONS:
+   -PATH_TO_MANIFEST_FOLDER Path to manifest.yaml file, if not provided manifest.yaml file in current directory will be                          used
+   --file,-f                Use the provided PATH_TO_MANIFEST_FOLDER
+   --run,-r                 Run the application file defined in xsappConfig welcomeFile automatically after push                
+```
+
 ## Configuration
 
 The configuration of the HTML5 CLI Plugin is done via environment variables.
 The following are supported:
   * `DEBUG=1` - enables trace logs with detailed information about currently running steps
   * `HTML5_SERVICE_NAME` - name of the service in CF marketplace (default: `html5-apps-repo`)
+  * `APPROUTER_DOMAIN`   - the approuter service domain to be used for automatic run
 
 ## Troubleshooting
 
